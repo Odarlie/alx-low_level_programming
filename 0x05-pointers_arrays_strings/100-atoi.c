@@ -1,49 +1,32 @@
 #include "main.h"
-#include <stdio.h>
 /**
- * print_number - Print an integer using only _putchar
- * @n: integer to print
+ * _atoi - converts a string to an integer.
+ * @s: the string to convert
+ * Return: the converted string.
  */
-
-void print_number(int n)
+int _atoi(char *s)
 {
-	int power;
-	int neg;
-	int hold;
+	short boolean;
+	int i, minus, result;
 
-	neg = 0;
-	power = 1;
-	hold = n;
-	if (n < 0)
-	{
-		_putchar('-');
-		neg = 1;
-	}
+	i = minus = result = boolean = 0;
+	minus = -1;
 
-	while (hold > 9 || hold < -9)
+	while (s[i] != '\0')
 	{
-		power *= 10;
-		hold /= 10;
-	}
+		if (s[i] == '-')
+			minus *= -1;
 
-	while (power > 0)
-	{
-		if (power > 9)
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			if (!neg)
-				_putchar((n / power % 10) + '0');
-			else
-				_putchar((n / power % 10) * -1 + '0');
-
-			power /= 10;
+			result *= 10;
+			result -= (s[i] - '0');
+			boolean = 1;
 		}
-		if (power == 1)
-		{
-			if (neg)
-				_putchar((n % 10) * -1 + '0');
-			else
-				_putchar(n % 10 + '0');
-			power = 0;
-		}
+		else if (boolean == 1)
+			break;
+		i++;
 	}
+	result *= minus;
+	return (result);
 }

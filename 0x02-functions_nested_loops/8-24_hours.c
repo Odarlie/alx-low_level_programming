@@ -36,4 +36,4 @@ void jack_bauer(void)
 		x++;
 	}
 }
-© 2022 GitHu
+
